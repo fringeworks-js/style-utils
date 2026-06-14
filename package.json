@@ -1,6 +1,6 @@
 {
   "name": "@niche-works/style-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "keywords": [
     "css",
@@ -29,19 +29,22 @@
     "tidy": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\" --config ./prettier.tidy.config.js"
   },
   "dependencies": {
-    "@niche-works/utils": "^0.4.1",
+    "@niche-works/utils": "^0.4.2",
+    "@niche-works/web-utils": "^0.1.1",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
     "@niche-works/dev": "^0.5.4",
     "@niche-works/rollup-plugin-dist-package": "^0.2.2",
     "@types/node": "^25.5.0",
+    "@vitest/coverage-v8": "^4.1.8",
     "prettier": "^3.8.3",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-packagejson": "^3.0.2",
     "rollup-plugin-copy": "^3.5.0",
     "tsdown": "^0.22.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.8"
   },
   "packageManager": "pnpm@10.32.1"
 }

@@ -1,3 +1,5 @@
+import type { CSSCustomProperties } from '@niche-works/web-utils';
+
 /**
  * style-xxx系ライブラリで使用する、状態をキーとするスタイル値のレコード型
  *
@@ -32,3 +34,18 @@ export type StyleStateRecord<T, S extends string> = { base?: T } & {
  * const v: StyleState<number, 'hover'> = { hover: 8 }
  */
 export type StyleState<T, S extends string> = T | StyleStateRecord<T, S>;
+
+/**
+ * 結果のスタイル
+ */
+export type StyleResult = {
+  /**
+   * クラス
+   */
+  className?: string;
+
+  /**
+   * スタイル
+   */
+  style?: CSSCustomProperties;
+};
