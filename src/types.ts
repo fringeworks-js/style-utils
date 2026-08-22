@@ -36,6 +36,18 @@ export type StyleStateRecord<T, S extends string> = { base?: T } & {
 export type StyleState<T, S extends string> = T | StyleStateRecord<T, S>;
 
 /**
+ * コンテナオプションに子要素スタイルオプションをフラットにマージする型
+ *
+ * - I: 子要素側のオプション（`> *` に適用されるスタイル）
+ * - C: コンテナ側のオプション
+ *
+ * @example
+ * type ContainerOptions = WithChildStyle<ItemOptions, { axis?: 'x' | 'y' }>;
+ * // ContainerOptions = { axis?: 'x' | 'y'; align?: SnapAlign; ... }
+ */
+export type WithChildStyle<I, C extends object = {}> = C & I;
+
+/**
  * 結果のスタイル
  */
 export type StyleResult = {
