@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mitsuhiroseino/niche-works-style-utils.git"
+    "url": "git+https://github.com/mitsuhiroseino/niche-works-style-utils.git"
   },
   "license": "MIT",
   "author": "Mitsuhiro Seino",
@@ -34,7 +34,7 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@niche-works/dev": "^0.5.4",
+    "@niche-works/dev": "^0.5.5",
     "@niche-works/rollup-plugin-dist-package": "^0.2.2",
     "@types/node": "^25.5.0",
     "@vitest/coverage-v8": "^4.1.8",
