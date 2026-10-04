@@ -53,7 +53,7 @@ export default function fillStyleState<T, S extends string>(
   }
 
   // valueがStyleStateRecord<T, S>: ステート毎の値を設定
-  const allStates = ['base', ...states];
+  const allStates: ('base' | S)[] = ['base', ...states];
   const record = value as Partial<Record<'base' | S, T>>;
   const filled: Partial<Record<'base' | S, T>> = {};
   for (const state of allStates) {

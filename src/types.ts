@@ -1,4 +1,4 @@
-import type { CSSCustomProperties } from '@niche-works/web-utils';
+import type { CSSCustomProperties } from '@fringeworks/web-utils';
 
 /**
  * style-xxx系ライブラリで使用する、状態をキーとするスタイル値のレコード型
