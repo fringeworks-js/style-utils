@@ -1,3 +1,3 @@
 # @fringeworks/style-utils
 
-A niche library that provides utilities for simple CSS libraries.
+`@fringeworks/style-utils` is a library some will find handy, providing utilities for simple CSS libraries.
