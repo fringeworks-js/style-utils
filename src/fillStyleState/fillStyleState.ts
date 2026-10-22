@@ -1,18 +1,23 @@
 import type { StyleState, StyleStateRecord } from '../types';
 
 /**
- * StyleState を受け取り、全ステートに値が埋まった StyleStateRecord を返す。
+ * StyleState を受け取り、value と defaultValue から値が決まったステートだけを埋めた
+ * StyleStateRecord を返す。
+ * 値が決まらなかったステートは含めない（利用するライブラリの既定値に委ねる）。
  *
  * - 単純値（T）の場合: 全ステートに同じ値を設定する（defaultValue は使わない）
  * - StyleStateRecord の場合: 未設定ステートに defaultValue[state] を設定
  * - undefined の場合: defaultValue を value と同様に処理
  *
+ * value に単純値のリテラル（`8` や `'red'` など）を直接渡すと T を正しく推論できないため、
+ * 型引数を明示する。型が決まった変数（オプションの値など）を渡す場合は不要。
+ *
  * @param value - 変換元の StyleState 値
  * @param states - base 以外の全ステート名の配列（型 S の全候補を列挙）
- * @param defaultValue - 全ステートの最終フォールバック値（T または StyleStateRecord でステート別に指定可能）
+ * @param defaultValue - value で省略したステートを補う値（T または StyleStateRecord でステート別に指定可能）
  *
  * @example
- * fillStyleState(8, ['hover'])
+ * fillStyleState<number, 'hover'>(8, ['hover'])
  * // → { base: 8, hover: 8 }
  *
  * fillStyleState({ base: 4 }, ['hover'])
@@ -38,8 +43,11 @@ export default function fillStyleState<T, S extends string>(
   states: readonly S[],
   defaultValue?: StyleState<T, S>,
 ): StyleStateRecord<T, S> {
+  // valueが未指定: defaultValue を value として処理する
   if (value === undefined) {
-    return {};
+    return defaultValue === undefined
+      ? {}
+      : fillStyleState(defaultValue, states);
   }
 
   // valueが単純値（T）: 全ステートに同じ値を設定（defaultValue は使わない）

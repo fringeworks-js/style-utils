@@ -1,5 +1,3 @@
-import type { CSSCustomProperties } from '@fringeworks/web-utils';
-
 /**
  * style-xxx系ライブラリで使用する、状態をキーとするスタイル値のレコード型
  *
@@ -20,8 +18,9 @@ export type StyleStateRecord<T, S extends string> = { base?: T } & {
  * - T: スタイルの値の型（number, string など）
  * - S: 状態の種類 ('hover' | 'focus' など)
  *
- * 単純値を渡した場合は base 状態にのみ適用され、
- * その他の状態は CSS 側のフォールバックに委ねられる。
+ * 単純値を渡した場合は全状態に同じ値が適用される（状態による変化なし）。
+ * StyleStateRecord で省略した状態は、利用するライブラリの既定値になる
+ * （base の値は引き継がない）。
  *
  * @example
  * // 全状態で同じ値（ホバーアニメーションなし）
@@ -45,6 +44,8 @@ export type StyleState<T, S extends string> = T | StyleStateRecord<T, S>;
  * type ContainerOptions = WithChildStyle<ItemOptions, { axis?: 'x' | 'y' }>;
  * // ContainerOptions = { axis?: 'x' | 'y'; align?: SnapAlign; ... }
  */
+// コンテナ側のオプションが無い場合に、I だけの型になるよう空のオブジェクト型にする
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export type WithChildStyle<I, C extends object = {}> = C & I;
 
 /**
@@ -60,4 +61,10 @@ export type StyleResult = {
    * スタイル
    */
   style?: CSSCustomProperties;
+};
+/**
+ * CSSカスタムプロパティ(変数)
+ */
+export type CSSCustomProperties = {
+  [key: `--${string}`]: string | undefined;
 };
